@@ -1,0 +1,75 @@
+      █         █                   █     █
+█▀█   █ █ ▀▀█ █▀█   █ █ █   █▀▀ █ █ █ █ █▀█ ▝ ▀▀█
+▀▀▀ ▀▀▀ ▀▀▀ ▀ ▀▀▀   ▀▀▀ ▀▀▀ ▀   ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀▀
+
+FIGlet font file for the Elian constructed script
+
+-------------------------------------------------
+
+WHAT
+
+- Elian Script is a pigpen cipher for the Latin alphabet. It has a deliberately
+  flexible formal structure which affords the writer a high degree of creative
+  freedom in the representation of characters.
+
+  For more information, visit: http://www.ccelian.com/ElianScript.pdf
+
+- FIGlet, in the words of its authors, is "a program for making large letters
+  out of ordinary text". You may have seen this kind of thing in signatures on
+  Usenet or in the MOTD of your university's computer systems.
+
+  For more information, visit: http://www.figlet.org/
+
+USAGE
+
+  Install FIGlet and place `elian.flf` in a suitable location. Your default
+  FIGlet fonts directory can be located with:
+
+    $ figlet -I 2
+
+  (`figlet` will also look in the current directory for fonts.)
+
+  Invoke `figlet` with `-f elian`. Some examples:
+
+    $ figlet -f elian 'hello world'
+    $ echo "abcdefghi\njklmnopqr\nstuvwxyz" | figlet -f elian
+    $ shuf -n1 /usr/share/dict/words | tee >(figlet -f elian)
+    $ figlet -f elian < war_and_peace.txt
+
+BUGS, KNOWN ISSUES, and OTHER AFFRONTS
+
+- You really, really need a font with monospaced block element characters, like
+  DejaVu Sans Mono, to view the output properly. (If you're reading this in a
+  web browser, the examples probably look like garbage.)
+
+- Does not currently support numerals, punctuation, accented characters... in
+  fact basically everything except ASCII letters. Also, there is no difference
+  between how uppercase and lowercase letters are rendered.
+
+- The font file is UTF-8 encoded; each block element character is actually
+  three bytes wide, which FIGlet's `chkfont` utility does not much care for.
+  In practice, it seems to render fine with `figlet`.
+
+- Dash placement for S, U, and Y is a little unusual, being located at the
+  outside corner of the box rather than the inside, or near an endpoint. This
+  allows us to take advantage of kerning without producing ambiguous
+  constructions (as in the YL and RS pairs below):
+
+            ▝   █           █   ▘
+    █   █▀█ █▀▀ █   █▀█ █▀█ █ ▀▀█ █▀█
+    ▀▀▀ ▀ ▀ █ ▀▀▀   █ ▀ ▀▀▀ ▀▀▀ █ ▀▀▀
+            ▀       ▀ ▘         ▀
+     I   D   Y L     V   E   R S   E
+
+- As a compromise between aesthetics and unambiguousness, dashes "lean" or
+  "gravitate" toward the horizontal center of the box to which they belong
+  (e.g. see PT, UP):
+
+      ▘                 █     █
+    ▀▀█ █▀█ █▀▀ ▝ ▀▀█   █ █▀▀ █ █▀█ ▝ ▀▀█
+      █ ▀▀▀ █   ▀▀▀▀▀ ▀▀▀ █ ▀▀▀ ▀▀▀ ▀▀▀▀▀
+      ▀     ▀           ▘ ▀
+     S   E   P    T    U   P L   E    T
+
+- Stylistically, this is really not the most imaginative variant of the script.
+  If you're interested, go see what other people have done. :)
